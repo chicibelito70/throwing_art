@@ -4,7 +4,6 @@
  devolverá 10.
 */ 
 
-
 const cand = (Text) => {
     if(typeof Text == "string"){
         return Text.length;
