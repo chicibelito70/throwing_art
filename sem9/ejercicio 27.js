@@ -26,3 +26,119 @@ géneros y calificación en IMBD.
 Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, 
 Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
 */
+
+class Pelicula {
+  constructor(idIMDB, titulo, director, anoEstreno, paisesOrigen, generos, calificacion) {
+    this.idIMDB = idIMDB;
+    this.titulo = titulo;
+    this.director = director;
+    this.anoEstreno = anoEstreno;
+    this.paisesOrigen = paisesOrigen;
+    this.generos = generos;
+    this.calificacion = calificacion;
+  }
+
+  static generosAceptados() {
+    return [
+      'Action', 
+      'Adult', 
+      'Adventure', 
+      'Animation', 
+      'Biography', 
+      'Comedy', 
+      'Crime', 
+      'Documentary',
+      'Drama', 
+      'Family', 
+      'Fantasy', 
+      'Film Noir', 
+      'Game-Show', 
+      'History', 
+      'Horror', 
+      'Musical',
+      'Music', 
+      'Mystery', 
+      'News', 
+      'Reality-TV', 
+      'Romance', 
+      'Sci-Fi', 
+      'Short', 
+      'Sport',
+      'Talk-Show', 
+      'Thriller', 
+      'War', 
+      'Western'
+    ];
+  }
+
+  validarIdIMDB() {
+    const regex = /^[A-Za-z]{2}\d{7}$/;
+    return regex.test(this.idIMDB);
+  }
+
+  validarTitulo() {
+    return this.titulo.length <= 100;
+  }
+
+  validarDirector() {
+    return this.director.length <= 50;
+  }
+
+  validarAnoEstreno() {
+    const regex = /^\d{4}$/;
+    return regex.test(this.anoEstreno);
+  }
+
+  validarPaisesOrigen() {
+    return Array.isArray(this.paisesOrigen);
+  }
+
+  validarGeneros() {
+    if (!Array.isArray(this.generos)) {
+      return false;
+    }
+
+    const generosAceptados = Pelicula.generosAceptados();
+    for (const genero of this.generos) {
+      if (!generosAceptados.includes(genero)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validarCalificacion() {
+    const regex = /^\d+(\.\d)?$/;
+    return regex.test(this.calificacion) && this.calificacion >= 0 && this.calificacion <= 10;
+  }
+
+  fichaTecnica() {
+    return `Título: ${this.titulo}\nDirector: ${this.director}\nAño de estreno: ${this.anoEstreno}\nPaíses de origen: ${this.paisesOrigen.join(', ')}\nGéneros: ${this.generos.join(', ')}\nCalificación: ${this.calificacion}`;
+  }
+}
+
+const peliculasData = [
+  {
+    idIMDB: 'tt1234567',
+    titulo: 'Pelicula 1',
+    director: 'Director 1',
+    anoEstreno: '2020',
+    paisesOrigen: ['País 1', 'País 2'],
+    generos: ['Action', 'Comedy'],
+    calificacion: '7.5'
+  },
+  {
+    idIMDB: 'tt9876543',
+    titulo: 'Pelicula 2',
+    director: 'Director 2',
+    anoEstreno: '2018',
+    paisesOrigen: ['País 3'],
+    generos: ['Drama', 'Thriller'],
+    calificacion: '8.2'
+  },
+  {
+    idIMDB: 'tt2468135',
+    titulo: 'Pelicula 3',
+    director: 'Director 3'
+  }
+]
