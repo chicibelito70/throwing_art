@@ -69,21 +69,21 @@ section{
 
 .panel{
   position: relative;
-  z-index: 998;
+  z-index: 999;
   top:0;
   bottom: 0;
   left: 0;
   width: 100%;
   background-color: var(--main-color);
   transition:transform 0.3s ease;
-  transform: translate(0, -100%);
+  transform: translate(0, -30%);
 }
 
 .panel-btn{
   position: fixed;
   z-index: 999;
   bottom: 90vh;
-  left: 1vw;
+  right: 0vw;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
